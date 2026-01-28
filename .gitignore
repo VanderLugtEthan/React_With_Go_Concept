@@ -1,0 +1,24 @@
+# Frontend packages and builds should be ignored, as they are large and unreadable as source code
+node_modules
+dist
+
+# Database credentials should not be revealed to the user
+dbcredentials.json
+.env
+.env.local
+
+# Add binaries if needed
+*.exe
+*.dll
+*.test
+
+# IDE Setting files
+.vscode/
+.idea/
+.DS_Store
+
+# Logs for test runs
+*.log
+logs/
+*.log.*
+npm-debug.log*
