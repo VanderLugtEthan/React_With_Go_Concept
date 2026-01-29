@@ -27,6 +27,22 @@ func main() {
     // API Calls should be stored here. Try to keep unrelated calls seperate
     api := route.Group("/api")
     {
+        
+        // JSON Handling (used to send responses properly to the client)
+        api.Use (func(ctx *gin.Context) {
+            ctx.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+            ctx.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+            ctx.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+            ctx.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
+
+            if ctx.Request.Method == "OPTIONS" {
+                ctx.AbortWithStatus(204)
+                return
+            }
+            ctx.Next()
+        })
+
+        
         api.GET("/hello", func(ctx *gin.Context) {
             ctx.JSON(http.StatusOK, gin.H{"message": "Hello from Some other guy!"})
         })
@@ -46,12 +62,12 @@ func main() {
             defer rows.Close()
 
             type Printer struct {
-                UserID       string `json:"userID"`
-                Computername string `json:"computername"`
-                PrinterType  string `json:"printerType"`
-                PrinterName  string `json:"printerName"`
-                PlantLocatn  string `json:"plantLocation"`
-                Notes        string `json:"notes"`
+                UserID       *string `json:"userID"`
+                Computername *string `json:"computername"`
+                PrinterType  *string `json:"printerType"`
+                PrinterName  *string `json:"printerName"`
+                PlantLocatn  *string `json:"plantLocation"`
+                Notes        *string `json:"notes"`
                 ID           int    `json:"id"`
             }
 
