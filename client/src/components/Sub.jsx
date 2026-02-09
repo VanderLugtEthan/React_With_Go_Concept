@@ -18,7 +18,8 @@ function Sub() {
         .catch((error) => console.error('Error fetching printers:', error))
     }, [])
 
-    // Return simple HTML code to the main page.
+    // Return simple HTML code t
+    // o the main page.
     return (
         <div>
             <h1>

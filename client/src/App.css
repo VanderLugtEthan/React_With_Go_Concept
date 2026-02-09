@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 60%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -86,4 +86,28 @@
 .navigator:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.pageHeader {
+  width: 100%;
+  height: 10vh; /* Use viewport height instead of percentage */
+  background-color: #333; /* Add background color */
+  color: #fcfcfc;
+  margin: 0; /* Remove margin to prevent shifting */
+  padding: 10px; /* Add px unit */
+  box-sizing: border-box; /* Include padding in height calculation */
+  display: flex; /* Flexbox for easy alignment */
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Space content evenly */
+  position: fixed; /* Fix to top of page */
+  top: 0; /* Position at top */
+  left: 0; /* Position at left */
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Add this to push content below header */
+body {
+  margin: 0;
+  padding-top: 10vh; /* Same as header height */
+  box-sizing: border-box;
 }

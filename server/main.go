@@ -8,11 +8,11 @@ import (
 
 func main() {
     
-    route := gin.Default()
+    router := gin.Default()
 
-    route.Static("/assets", "../client/dist/assets")
-    route.StaticFile("/vite.svg", "../client/dist/vite.svg")
-    route.LoadHTMLFiles("../client/dist/index.html")
+    router.Static("/assets", "../client/dist/assets")
+    router.StaticFile("/vite.svg", "../client/dist/vite.svg")
+    router.LoadHTMLFiles("../client/dist/index.html")
 
     // Connect to the database before any APIs are defined as this is required by the compiler
     // err is deffined as a fallback value in the event that the database is unable to connect
@@ -25,7 +25,7 @@ func main() {
     log.Println(db.Ping())
 
     // API Calls should be stored here. Try to keep unrelated calls seperate
-    api := route.Group("/api")
+    api := router.Group("/api")
     {
         
         // JSON Handling (used to send responses properly to the client)
@@ -88,11 +88,11 @@ func main() {
         })
     }
 
-    route.NoRoute(func(ctx *gin.Context) {
+    router.NoRoute(func(ctx *gin.Context) {
         ctx.HTML(http.StatusOK, "index.html", nil)
     })
 
     log.Println("Server is running at http://localhost:8080")
-    route.Run(":8080")
+    router.Run(":8080")
 }
 
