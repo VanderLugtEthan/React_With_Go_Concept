@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../style/Sub.css';
+import styles from '../style/Sub.module.css';
 
 // Sub component to be loaded into the router.
 function Sub() { 
@@ -18,8 +18,7 @@ function Sub() {
         .catch((error) => console.error('Error fetching printers:', error))
     }, [])
 
-    // Return simple HTML code t
-    // o the main page.
+    // Return simple HTML code to the main page.
     return (
         <div>
             <h1>
@@ -28,7 +27,7 @@ function Sub() {
             {printers.length > 0 ? (
                     <ul>
                     {printers.map((printer) => (
-                        <li key={printer.id} className="list">
+                        <li key={printer.id} className={styles.list}>
                             <p>
                                 {printer.UserID}
                                 {printer.Computername}
